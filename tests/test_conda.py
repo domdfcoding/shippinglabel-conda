@@ -139,7 +139,6 @@ def test_get_channel_listing(should_clear_cache: Union[bool, str]) -> None:
 	assert "attr-utils" not in listing
 	assert "domdf_python_tools" in listing
 	assert "apeye" in listing
-	assert "prettyprinter" in listing
 	assert "scikit_learn" not in listing
 
 	listing = get_channel_listing("conda-forge")

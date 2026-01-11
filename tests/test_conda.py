@@ -120,12 +120,15 @@ def test_prepare_requirements_markers_url_extras(tmp_pathplus: PathPlus) -> None
 
 
 @pytest.mark.flaky(reruns=1, reruns_delay=10)
-@pytest.mark.parametrize("should_clear_cache", [
-		False,
-		"domdfcoding",
-		"conda-forge",
-		True,
-		])
+@pytest.mark.parametrize(
+		"should_clear_cache",
+		[
+				False,
+				"domdfcoding",
+				"conda-forge",
+				True,
+				],
+		)
 def test_get_channel_listing(should_clear_cache: Union[bool, str]) -> None:
 
 	if should_clear_cache:
@@ -196,7 +199,7 @@ def test_validate_requirements() -> None:
 						fromfile="expected",
 						tofile="actual",
 						lineterm='',
-						)
+						),
 				)
 		raise AssertionError(actual)
 
@@ -222,10 +225,11 @@ def test_validate_requirements_unsatisfied() -> None:
 
 
 @pytest.mark.parametrize(
-		"summary", [
+		"summary",
+		[
 				pytest.param("A summary.", id="summary-a"),
 				pytest.param("Ma awesome package!", id="summary-b"),
-				]
+				],
 		)
 @pytest.mark.parametrize(
 		"channels",
@@ -235,7 +239,7 @@ def test_validate_requirements_unsatisfied() -> None:
 				pytest.param(["conda-forge", "bioconda"], id="channels-c"),
 				pytest.param(("conda-forge", "bioconda"), id="channels-d"),
 				pytest.param(["conda-forge", "domdfcoding", "bioconda"], id="channels - e"),
-				]
+				],
 		)
 def test_make_conda_description(
 		advanced_file_regression: AdvancedFileRegressionFixture,

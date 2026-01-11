@@ -74,7 +74,7 @@ cache_dir = PathPlus(
 				appname="shippinglabel",
 				appauthor="domdfcoding",
 				version=__version__,
-				)
+				),
 		) / "conda_cache"
 
 
@@ -223,7 +223,7 @@ def validate_requirements(
 		else:
 			raise InvalidRequirement(
 					f"Cannot satisfy the requirement {requirement.name!r} "
-					f"from any of the channels: '{channels:', '}'."
+					f"from any of the channels: '{channels:', '}'.",
 					)
 
 	return validated_requirements

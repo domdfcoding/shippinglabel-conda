@@ -121,14 +121,25 @@ def get_channel_listing(channel_name: str) -> List[str]:
 	conda_packages = set()
 
 	try:
-		for package in (CONDA_API / channel_name / "noarch" / "repodata.json").get()["packages"].values():
+		repodata = (CONDA_API / channel_name / "noarch" / "repodata.json").get()
+
+		for package in repodata["packages"].values():
 			conda_packages.add(package["name"])
+
+		for package in repodata["packages.conda"].values():
+			conda_packages.add(package["name"])
+
 	except apeye.slumber_url.exceptions.HttpNotFoundError:
 		raise ValueError(f"Conda channel {channel_name!r} not found.")
 
 	with suppress(apeye.slumber_url.exceptions.HttpNotFoundError):
 		# TODO: other architectures
-		for package in (CONDA_API / channel_name / "linux-64" / "repodata.json").get()["packages"].values():
+		repodata = (CONDA_API / channel_name / "linux-64" / "repodata.json").get()
+
+		for package in repodata["packages"].values():
+			conda_packages.add(package["name"])
+
+		for package in repodata["packages.conda"].values():
 			conda_packages.add(package["name"])
 
 	data = {"expires": (datetime.now() + timedelta(hours=48)).timestamp(), "packages": sorted(conda_packages)}

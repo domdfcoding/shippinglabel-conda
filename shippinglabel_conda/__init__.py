@@ -269,9 +269,9 @@ def make_conda_description(summary: str, conda_channels: Iterable[str] = ()) -> 
 	.. code-block:: python
 
 		make_conda_description(
-			"This is my fancy Conda package. Hope you like it 😉.",
-			["conda-forge", "bioconda"],
-		)
+				"This is my fancy Conda package. Hope you like it 😉.",
+				["conda-forge", "bioconda"],
+				)
 
 	.. versionadded:: 0.8.0
 
